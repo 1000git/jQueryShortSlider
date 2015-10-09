@@ -1,0 +1,10 @@
+# osx noise
+.DS_Store
+profile
+
+# DreamWeaver noise
+dwsync.xml
+*.mno
+_compareTemp/*
+_mmServerScripts/*
+.sass-cache/*
