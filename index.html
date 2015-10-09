@@ -59,6 +59,8 @@ $(window).load(function(){
 	var itemsH;
 	itemHresize()
 	$('.pattern li a').click( function(){
+		$('.pattern li a').removeClass('active');
+		$(this).addClass('active');
 		$('.item').removeClass('active');
 		$($(this).attr('href')).addClass('active');
 		itemsH = $($(this).attr('href')).height();
