@@ -280,7 +280,7 @@
 		return false;
 	});
 	function PrevNextDisabled(){
-		var $PrevNextMask = $('<span class="prev" style=" top:50%; opacity:1;"></span><span class="next" style=" top:50%; opacity:1;"></span>').appendTo($wrap.find(settings.itemDisplay));
+		var $PrevNextMask = $('<span class="prev" style=" top:50%; opacity:1;"></span><span class="next" style=" top:50%; opacity:0;"></span>').appendTo($wrap.find(settings.itemDisplay));
 		setTimeout( function(){
 			$PrevNextMask.remove();
 		}, 400);
