@@ -12,11 +12,13 @@
 	var defaults = {
 		itemDisplay		: '.itemDisplay',
 		style			: 'nomal', // nomal, carousel, fade
+		movementSpeed	: 500,
+		group			: 1,
 		flick			: true,
 		rand			: false,
 		// thumbnails	: false,
 		hoverStop		: true, // Applicable only when the 'auto' is true.
-		speed			: 5000,
+		speed			: 3000,
 		auto			: true,
 		indicator		: true,
 		indicatorStyle	: true, // Applicable only when the 'indicator' is true.
@@ -167,12 +169,12 @@
 				$wrap.find('ul li').eq(num).addClass('currentItem');
 				left = num*itemW;
 				if( num!=1 || num!=length ) { 
-					$wrap.find('ul').stop().animate({left:-left});
+					$wrap.find('ul').stop().animate({left:-left},settings.movementSpeed);
 				}
 			} else {
 				$wrap.find('ul li').eq(num-1).addClass('currentItem');
 				left = num*itemW-itemW;
-				$wrap.find('ul').stop().animate({left:-left});
+				$wrap.find('ul').stop().animate({left:-left},settings.movementSpeed);
 			}
 		}
 		$wrap.find('.indicator span').removeClass('current')
@@ -193,7 +195,7 @@
 				num=1;
 				if( settings.style == 'carousel' ) { 
 					left = itemW*length+itemW;
-					$wrap.find('ul').stop().animate({left:-left}, function(){
+					$wrap.find('ul').stop().animate({left:-left},settings.movementSpeed, function(){
 						$wrap.find('ul').stop().css({ left:-itemW})
 					});
 					$wrap.find('.indicator span').removeClass('current')
@@ -239,7 +241,7 @@
 			// num == length の場合
 			if( settings.style == 'carousel' ) {
 				left = 0;
-				$wrap.find('ul').stop().animate({left:left}, function(){
+				$wrap.find('ul').stop().animate({left:left},settings.movementSpeed, function(){
 					$wrap.find('ul').stop().css({ left:-num*itemW})
 					
 					//change();
@@ -264,7 +266,7 @@
 			num=1;
 			if( settings.style == 'carousel' ) {
 				left = itemW*length+itemW;
-				$wrap.find('ul').stop().animate({left:-left}, function(){
+				$wrap.find('ul').stop().animate({left:-left},settings.movementSpeed, function(){
 					$wrap.find('ul').stop().css({ left:-itemW})
 				});
 				$wrap.find('.indicator span').removeClass('current')
@@ -337,9 +339,9 @@
 					num = num-1
 				} else {
 					if( settings.style == 'fade' ) { // fade
-						$target.find('li.currentItem').stop().animate({ left: 0});
+						$target.find('li.currentItem').stop().animate({ left: 0},settings.movementSpeed);
 					}
-					$target.stop().animate({ left:left});
+					$target.stop().animate({ left:left},settings.movementSpeed);
 				}
 				if(num>length){
 					if( settings.style == 'fade' ) { // fade
@@ -349,7 +351,7 @@
 						change()
 					}else {
 						if( settings.style == 'carousel' ) {
-							$wrap.find('ul').stop().animate({left:-itemW*length-itemW}, function(){
+							$wrap.find('ul').stop().animate({left:-itemW*length-itemW},settings.movementSpeed, function(){
 								//alert('')
 								$wrap.find('ul').stop().css({ left:-itemW})
 							});
@@ -357,7 +359,7 @@
 							$wrap.find('.indicator span').eq(0).addClass('current');
 							num = 1
 						} else {
-							$target.stop().animate({ left:left});
+							$target.stop().animate({ left:left},settings.movementSpeed);
 							num = length
 						}
 					}
@@ -369,13 +371,13 @@
 						change()
 					}else {
 						if( settings.style == 'carousel' ) {
-							$target.stop().animate({left:0}, function(){
+							$target.stop().animate({left:0},settings.movementSpeed, function(){
 								$target.css({ left:-length*itemW})
 							});
 							$wrap.find('.indicator span').removeClass('current')
 							$wrap.find('.indicator span').eq(length-1).addClass('current');
 						} else {
-							$target.stop().animate({ left:left});
+							$target.stop().animate({ left:left},settings.movementSpeed);
 						}
 					}
 					
